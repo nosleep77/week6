@@ -14,8 +14,8 @@ podTemplate(
             // executed in that container.
             container('gradle') {
                 stage('gradlew executable') {
-                      chmod +x gradlew
-                      '''
+	              sh "chmod +x gradlew"
+                      
 		}
 
 
