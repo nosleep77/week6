@@ -1,0 +1,112 @@
+Pull request #2 closed
+Connecting to https://api.github.com using nosleep77/******
+Obtained Jenkinsfile from 3d0eae33324d3a24f6015428190807dac6b38d40
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/multibranch1_update-jenkinsfile@2
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential 291ba541-1dda-4f25-ae46-926d1f47eb00
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/multibranch1_update-jenkinsfile@2/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/nosleep77/week6.git # timeout=10
+Fetching without tags
+Fetching upstream changes from https://github.com/nosleep77/week6.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_ASKPASS to set credentials 
+ > git fetch --no-tags --force --progress -- https://github.com/nosleep77/week6.git +refs/heads/update-jenkinsfile:refs/remotes/origin/update-jenkinsfile # timeout=10
+Checking out Revision 3d0eae33324d3a24f6015428190807dac6b38d40 (update-jenkinsfile)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 3d0eae33324d3a24f6015428190807dac6b38d40 # timeout=10
+Commit message: "project"
+ > git rev-list --no-walk 3d0eae33324d3a24f6015428190807dac6b38d40 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Compile)
+[Pipeline] sh
++ ./gradlew compileJava
+Starting a Gradle Daemon (subsequent builds will be faster)
+> Task :compileJava UP-TO-DATE
+
+BUILD SUCCESSFUL in 4s
+1 actionable task: 1 up-to-date
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Unit test)
+[Pipeline] sh
++ ./gradlew test
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :compileTestJava UP-TO-DATE
+> Task :processTestResources UP-TO-DATE
+> Task :testClasses UP-TO-DATE
+> Task :test UP-TO-DATE
+
+BUILD SUCCESSFUL in 1s
+5 actionable tasks: 5 up-to-date
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Code coverage)
+Stage "Code coverage" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Static code analysis)
+[Pipeline] sh
++ ./gradlew checkstyleMain
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :checkstyleMain UP-TO-DATE
+
+BUILD SUCCESSFUL in 1s
+3 actionable tasks: 3 up-to-date
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Package)
+[Pipeline] sh
++ ./gradlew build
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :bootJar UP-TO-DATE
+> Task :jar SKIPPED
+> Task :assemble UP-TO-DATE
+> Task :checkstyleMain UP-TO-DATE
+> Task :compileTestJava UP-TO-DATE
+> Task :processTestResources UP-TO-DATE
+> Task :testClasses UP-TO-DATE
+> Task :checkstyleTest SKIPPED
+> Task :test UP-TO-DATE
+> Task :check UP-TO-DATE
+> Task :build UP-TO-DATE
+
+BUILD SUCCESSFUL in 1s
+7 actionable tasks: 7 up-to-date
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+
+Could not update commit status, please check if your scan credentials belong to a member of the organization or a collaborator of the repository and repo:status scope is selected
+
+
+GitHub has been notified of this commit’s build result
+
+Finished: SUCCESS
+
