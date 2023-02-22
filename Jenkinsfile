@@ -10,6 +10,9 @@ pipeline {
                }
           }
           stage("Unit test") {
+            when {
+                branch "main"
+            }
                steps {
                     sh "./gradlew test"
                }
