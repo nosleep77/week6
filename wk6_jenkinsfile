@@ -20,14 +20,9 @@ podTemplate(
 
 
           stage("Unit test") {
-                  when {
-                    branch "main"
-                }
-
-               steps {
+		if (env.BRANCH_NAME == "main") {
                     sh "./gradlew test"
-               }
-          }
+          } }
 
 
                 stage('Code coverage') {
