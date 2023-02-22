@@ -21,7 +21,7 @@ podTemplate(
 
           stage("Unit test") {
                   when {
-                    not { branch 'main' }
+                    branch "main"
                 }
 
                steps {
