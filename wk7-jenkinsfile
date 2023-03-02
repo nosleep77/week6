@@ -52,8 +52,7 @@ node(POD_LABEL) {
         mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
         '''
 
-	//if (env.BRANCH_NAME == "master") { 
-	
+	if (env.BRANCH_NAME == "master") { 
         sh '''
         cd Chapter08/sample1
         chmod +x gradlew
@@ -62,8 +61,7 @@ node(POD_LABEL) {
 	./gradlew jacocoTestCoverageVerification
 	./gradlew checkstyleMain
         '''
-
-        //}
+        }
 
 
       }
