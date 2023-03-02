@@ -54,10 +54,14 @@ node(POD_LABEL) {
 
 	//if (env.BRANCH_NAME == "master") { 
 	
-	 sh "./gradlew test"
-	 sh "./gradlew jacocoTestReport"
-	 sh "./gradlew jacocoTestCoverageVerification"
-	 sh "./gradlew checkstyleMain" 
+        sh '''
+        cd Chapter08/sample1
+        chmod +x gradlew
+	./gradlew test
+	./gradlew jacocoTestReport
+	./gradlew jacocoTestCoverageVerification
+	./gradlew checkstyleMain
+        '''
 
         //}
 
