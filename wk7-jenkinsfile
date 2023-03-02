@@ -63,6 +63,15 @@ node(POD_LABEL) {
         '''
         }
 
+        if (env.BRANCH_NAME == "feature") {
+        sh '''
+        cd Chapter08/sample1
+        chmod +x gradlew
+        ./gradlew test
+        ./gradlew checkstyleMain
+        '''
+        }
+
 
       }
 
