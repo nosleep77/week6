@@ -51,12 +51,18 @@ node(POD_LABEL) {
         ./gradlew build
         mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
         '''
+
+	//if (env.BRANCH_NAME == "master") { 
+	
+	 sh "./gradlew test"
+	 sh "./gradlew jacocoTestReport"
+	 sh "./gradlew jacocoTestCoverageVerification"
+	 sh "./gradlew checkstyleMain" 
+
+        //}
+
+
       }
-
-       stage("Compile") {
-               sh "./gradlew compileJava"
-       }
-
 
      }
    }
