@@ -82,15 +82,30 @@ node(POD_LABEL) {
   stage('Build Java Image') {
     container('kaniko') {
       stage('Build a gradle project') {
+
+	if (env.BRANCH_NAME == "master") {
         sh '''
         echo 'FROM openjdk:8-jre' > Dockerfile
         echo 'COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar' >> Dockerfile
         echo 'ENTRYPOINT ["java", "-jar", "app.jar"]' >> Dockerfile
         mv /mnt/calculator-0.0.1-SNAPSHOT.jar .
-        /kaniko/executor --context `pwd` --destination johnt035/hello-kaniko:1.0
+        /kaniko/executor --context `pwd` --destination johnt035/calculator:1.0
+        '''
+	}
+
+        if (env.BRANCH_NAME == "feature") {
+        sh '''
+        echo 'FROM openjdk:8-jre' > Dockerfile
+        echo 'COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar' >> Dockerfile
+        echo 'ENTRYPOINT ["java", "-jar", "app.jar"]' >> Dockerfile
+        mv /mnt/calculator-0.0.1-SNAPSHOT.jar .
+        /kaniko/executor --context `pwd` --destination johnt035/calculator-feature:0.1
         '''
         }
-      }
+
+
+       }
+     }
    }
 
 
