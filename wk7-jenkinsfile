@@ -43,6 +43,7 @@ node(POD_LABEL) {
     git 'https://github.com/nosleep77/cd-docker-jenkins'
 
     container('gradle') {
+
       stage('Build a gradle project') {
         sh '''
         cd Chapter08/sample1
@@ -51,6 +52,14 @@ node(POD_LABEL) {
         mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
         '''
       }
+
+       stage("Compile") {
+            steps {
+               sh "./gradlew compileJava"
+          }
+       }
+
+
      }
    }
 
