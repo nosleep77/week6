@@ -54,9 +54,7 @@ node(POD_LABEL) {
       }
 
        stage("Compile") {
-            steps {
                sh "./gradlew compileJava"
-          }
        }
 
 
