@@ -5,4 +5,7 @@ test 4
 test 5
 test 6
 master
+<<<<<<< HEAD
 feature
+=======
+>>>>>>> master
