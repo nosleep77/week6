@@ -1,3 +1,6 @@
+
+def buildPassed = true
+
 podTemplate(yaml: '''
     apiVersion: v1
     kind: Pod
@@ -38,13 +41,13 @@ podTemplate(yaml: '''
               path: config.json
 ''') {
 
+
 node(POD_LABEL) {
+
   stage('Build a gradle project') {
     git 'https://github.com/nosleep77/cd-docker-jenkins'
 
     container('gradle') {
-
-      boolean buildPassed = true
 
       stage('Build a gradle project') {
 
