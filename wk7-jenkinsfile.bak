@@ -1,6 +1,3 @@
-
-def buildPassed = true
-
 podTemplate(yaml: '''
     apiVersion: v1
     kind: Pod
@@ -41,17 +38,13 @@ podTemplate(yaml: '''
               path: config.json
 ''') {
 
-
 node(POD_LABEL) {
-
   stage('Build a gradle project') {
     git 'https://github.com/nosleep77/cd-docker-jenkins'
 
     container('gradle') {
 
       stage('Build a gradle project') {
-
-	try {
         sh '''
         cd Chapter08/sample1
         chmod +x gradlew
@@ -79,10 +72,6 @@ node(POD_LABEL) {
         '''
         }
 
-	} catch (Exception e){
-	  buildPassed = false
-	}
-	
 
       }
 
@@ -90,11 +79,9 @@ node(POD_LABEL) {
    }
 
 
-  stage('Build Container Image') {
+  stage('Build Java Image') {
     container('kaniko') {
       stage('Build a gradle project') {
-
-	if (buildPassed) {
 
 	if (env.BRANCH_NAME == "master") {
         sh '''
@@ -116,7 +103,6 @@ node(POD_LABEL) {
         '''
         }
 
-        }
 
        }
      }
