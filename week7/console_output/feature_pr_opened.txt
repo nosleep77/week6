@@ -1,0 +1,184 @@
+Pull request #27 opened
+Connecting to https://api.github.com using nosleep77/******
+Obtained wk7-jenkinsfile from fe6b5507b1abb866f432f2b03cd7fbb950944790
+[Pipeline] Start of Pipeline
+[Pipeline] podTemplate
+[Pipeline] {
+[Pipeline] node
+Created Pod: kubernetes jenkins/multibranch1-pr-27-1-4g7md-kgb4l-0n78x
+Agent multibranch1-pr-27-1-4g7md-kgb4l-0n78x is provisioned from template multibranch1_PR-27_1-4g7md-kgb4l
+---
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+  annotations:
+    buildUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080/job/multibranch1/job/PR-27/1/"
+    runUrl: "job/multibranch1/job/PR-27/1/"
+  labels:
+    jenkins: "agent"
+    jenkins/label-digest: "aa343cd5f406de760c0f6cf9cbb8ec22c0fe5b10"
+    jenkins/label: "multibranch1_PR-27_1-4g7md"
+  name: "multibranch1-pr-27-1-4g7md-kgb4l-0n78x"
+  namespace: "jenkins"
+spec:
+  containers:
+  - args:
+    - "99d"
+    command:
+    - "sleep"
+    image: "gradle:6.3-jdk14"
+    name: "gradle"
+    volumeMounts:
+    - mountPath: "/mnt"
+      name: "shared-storage"
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+  - args:
+    - "9999999"
+    command:
+    - "sleep"
+    image: "gcr.io/kaniko-project/executor:debug"
+    name: "kaniko"
+    volumeMounts:
+    - mountPath: "/mnt"
+      name: "shared-storage"
+    - mountPath: "/kaniko/.docker"
+      name: "kaniko-secret"
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+  - env:
+    - name: "JENKINS_SECRET"
+      value: "********"
+    - name: "JENKINS_AGENT_NAME"
+      value: "multibranch1-pr-27-1-4g7md-kgb4l-0n78x"
+    - name: "JENKINS_NAME"
+      value: "multibranch1-pr-27-1-4g7md-kgb4l-0n78x"
+    - name: "JENKINS_AGENT_WORKDIR"
+      value: "/home/jenkins/agent"
+    - name: "JENKINS_URL"
+      value: "http://jenkins-service.jenkins.svc.cluster.local:8080/"
+    image: "jenkins/inbound-agent:3107.v665000b_51092-2"
+    name: "jnlp"
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "100m"
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+  nodeSelector:
+    kubernetes.io/os: "linux"
+  restartPolicy: "Never"
+  volumes:
+  - name: "kaniko-secret"
+    secret:
+      items:
+      - key: ".dockerconfigjson"
+        path: "config.json"
+      secretName: "dockercred"
+  - emptyDir:
+      medium: ""
+    name: "workspace-volume"
+  - name: "shared-storage"
+    persistentVolumeClaim:
+      claimName: "week7-dind"
+
+Running on multibranch1-pr-27-1-4g7md-kgb4l-0n78x in /home/jenkins/agent/workspace/multibranch1_PR-27
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build a gradle project)
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/nosleep77/cd-docker-jenkins
+ > git init /home/jenkins/agent/workspace/multibranch1_PR-27 # timeout=10
+Fetching upstream changes from https://github.com/nosleep77/cd-docker-jenkins
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+ > git fetch --tags --force --progress -- https://github.com/nosleep77/cd-docker-jenkins +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+Checking out Revision 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 (refs/remotes/origin/master)
+Commit message: "Update Calculator.java"
+First time build. Skipping changelog.
+ > git config remote.origin.url https://github.com/nosleep77/cd-docker-jenkins # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git checkout -b master 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 # timeout=10
+[Checks API] No suitable checks publisher found.
+[Pipeline] container
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build a gradle project)
+[Pipeline] sh
++ cd Chapter08/sample1
++ chmod +x gradlew
++ ./gradlew build
+Downloading https://services.gradle.org/distributions/gradle-4.10.2-bin.zip
+..........................................................................
+
+Welcome to Gradle 4.10.2!
+
+Here are the highlights of this release:
+ - Incremental Java compilation by default
+ - Periodic Gradle caches cleanup
+ - Gradle Kotlin DSL 1.0-RC6
+ - Nested included builds
+ - SNAPSHOT plugin versions in the `plugins {}` block
+
+For more details see https://docs.gradle.org/4.10.2/release-notes.html
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :bootJar
+> Task :jar SKIPPED
+> Task :assemble
+> Task :checkstyleMain
+> Task :compileTestJava
+> Task :processTestResources
+> Task :testClasses
+> Task :checkstyleTest SKIPPED
+> Task :test
+> Task :check
+> Task :build
+
+BUILD SUCCESSFUL in 33s
+7 actionable tasks: 7 executed
++ mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Container Image)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build a gradle project)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // podTemplate
+[Pipeline] End of Pipeline
+[Checks API] No suitable checks publisher found.
+
+GitHub has been notified of this commit’s build result
+
+Finished: SUCCESS
+
