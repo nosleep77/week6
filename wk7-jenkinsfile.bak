@@ -44,11 +44,7 @@ node(POD_LABEL) {
 
     container('gradle') {
 
-      boolean buildPassed = true
-
       stage('Build a gradle project') {
-
-	try {
         sh '''
         cd Chapter08/sample1
         chmod +x gradlew
@@ -76,10 +72,6 @@ node(POD_LABEL) {
         '''
         }
 
-	} catch (Exception e){
-	  buildPassed = false
-	}
-	
 
       }
 
@@ -87,11 +79,9 @@ node(POD_LABEL) {
    }
 
 
-  stage('Build Container Image') {
+  stage('Build Java Image') {
     container('kaniko') {
       stage('Build a gradle project') {
-
-	if (buildPassed) {
 
 	if (env.BRANCH_NAME == "master") {
         sh '''
@@ -113,7 +103,6 @@ node(POD_LABEL) {
         '''
         }
 
-        }
 
        }
      }
