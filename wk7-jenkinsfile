@@ -75,7 +75,7 @@ node(POD_LABEL) {
         cd Chapter08/sample1
         chmod +x gradlew
         ./gradlew test
-        ./gradlew checkstyleMain
+        ./gradlew checkstydfd
         '''
         }
 
