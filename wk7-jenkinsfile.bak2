@@ -1,3 +1,4 @@
+
 def buildPassed = true
 
 podTemplate(yaml: '''
@@ -58,7 +59,7 @@ node(POD_LABEL) {
         mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
         '''
 
-	if (CHANGE_TARGET == "master") { 
+	if (env.BRANCH_NAME == "master") { 
         sh '''
         cd Chapter08/sample1
         chmod +x gradlew
@@ -69,7 +70,7 @@ node(POD_LABEL) {
         '''
         }
 
-        if (CHANGE_TARGET == "feature") {
+        if (env.BRANCH_NAME == "feature") {
         sh '''
         cd Chapter08/sample1
         chmod +x gradlew
@@ -95,7 +96,7 @@ node(POD_LABEL) {
 
 	if (buildPassed) {
 
-	if (CHANGE_TARGET == "master") {
+	if (env.BRANCH_NAME == "master") {
         sh '''
         echo 'FROM openjdk:8-jre' > Dockerfile
         echo 'COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar' >> Dockerfile
@@ -105,7 +106,7 @@ node(POD_LABEL) {
         '''
 	}
 
-        if (CHANGE_TARGET == "feature") {
+        if (env.BRANCH_NAME == "feature") {
         sh '''
         echo 'FROM openjdk:8-jre' > Dockerfile
         echo 'COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar' >> Dockerfile
