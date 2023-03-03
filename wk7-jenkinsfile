@@ -67,6 +67,7 @@ node(POD_LABEL) {
 	./gradlew jacocoTestReport
 	./gradlew jacocoTestCoverageVerification
 	./gradlew checkstyleMain
+	exit 1
         '''
         }
 
