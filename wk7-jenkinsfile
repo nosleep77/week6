@@ -76,6 +76,7 @@ node(POD_LABEL) {
         chmod +x gradlew
         ./gradlew test
         ./gradlew checkstyleMain
+	exit 1
         '''
         }
 
