@@ -127,6 +127,7 @@ node(POD_LABEL) {
             // Trigger the branch build
             build job: 'my-branch-job', parameters: [string(name: 'BRANCH_NAME', value: env.CHANGE_TARGET)]
         }
+   }
 
 }
 }
