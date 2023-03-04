@@ -1,24 +1,24 @@
-Pull request #29 opened
+Pull request #34 updated
 Connecting to https://api.github.com using nosleep77/******
-Obtained wk7-jenkinsfile from 6def64a8ee6257af9cfd18985101ee9b3106cb0b
+Obtained wk7-jenkinsfile from 4d267bf7e0de4ee8f4126b60c112e63fb31e5506
 [Pipeline] Start of Pipeline
 [Pipeline] podTemplate
 [Pipeline] {
 [Pipeline] node
-Created Pod: kubernetes jenkins/multibranch1-pr-29-1-s7jz2-ms97s-dlm7n
-Agent multibranch1-pr-29-1-s7jz2-ms97s-dlm7n is provisioned from template multibranch1_PR-29_1-s7jz2-ms97s
+Created Pod: kubernetes jenkins/multibranch1-pr-34-2-m3kcd-b416s-gmwlb
+Agent multibranch1-pr-34-2-m3kcd-b416s-gmwlb is provisioned from template multibranch1_PR-34_2-m3kcd-b416s
 ---
 apiVersion: "v1"
 kind: "Pod"
 metadata:
   annotations:
-    buildUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080/job/multibranch1/job/PR-29/1/"
-    runUrl: "job/multibranch1/job/PR-29/1/"
+    buildUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080/job/multibranch1/job/PR-34/2/"
+    runUrl: "job/multibranch1/job/PR-34/2/"
   labels:
     jenkins: "agent"
-    jenkins/label-digest: "7bd99871bc315d57dc7fdedcf4ee45ab42592ab9"
-    jenkins/label: "multibranch1_PR-29_1-s7jz2"
-  name: "multibranch1-pr-29-1-s7jz2-ms97s-dlm7n"
+    jenkins/label-digest: "482e8c1d6f74e3f792c6cc65dad00e75f6b45769"
+    jenkins/label: "multibranch1_PR-34_2-m3kcd"
+  name: "multibranch1-pr-34-2-m3kcd-b416s-gmwlb"
   namespace: "jenkins"
 spec:
   containers:
@@ -52,9 +52,9 @@ spec:
     - name: "JENKINS_SECRET"
       value: "********"
     - name: "JENKINS_AGENT_NAME"
-      value: "multibranch1-pr-29-1-s7jz2-ms97s-dlm7n"
+      value: "multibranch1-pr-34-2-m3kcd-b416s-gmwlb"
     - name: "JENKINS_NAME"
-      value: "multibranch1-pr-29-1-s7jz2-ms97s-dlm7n"
+      value: "multibranch1-pr-34-2-m3kcd-b416s-gmwlb"
     - name: "JENKINS_AGENT_WORKDIR"
       value: "/home/jenkins/agent"
     - name: "JENKINS_URL"
@@ -86,7 +86,7 @@ spec:
     persistentVolumeClaim:
       claimName: "week7-dind"
 
-Running on multibranch1-pr-29-1-s7jz2-ms97s-dlm7n in /home/jenkins/agent/workspace/multibranch1_PR-29
+Running on multibranch1-pr-34-2-m3kcd-b416s-gmwlb in /home/jenkins/agent/workspace/multibranch1_PR-34
 [Pipeline] {
 [Pipeline] stage
 [Pipeline] { (Build a gradle project)
@@ -94,23 +94,23 @@ Running on multibranch1-pr-29-1-s7jz2-ms97s-dlm7n in /home/jenkins/agent/workspa
 The recommended git tool is: NONE
 No credentials specified
 Cloning the remote Git repository
+Avoid second fetch
+Checking out Revision 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 (refs/remotes/origin/master)
 Cloning repository https://github.com/nosleep77/cd-docker-jenkins
- > git init /home/jenkins/agent/workspace/multibranch1_PR-29 # timeout=10
+ > git init /home/jenkins/agent/workspace/multibranch1_PR-34 # timeout=10
 Fetching upstream changes from https://github.com/nosleep77/cd-docker-jenkins
  > git --version # timeout=10
  > git --version # 'git version 2.30.2'
  > git fetch --tags --force --progress -- https://github.com/nosleep77/cd-docker-jenkins +refs/heads/*:refs/remotes/origin/* # timeout=10
-Avoid second fetch
-Checking out Revision 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 (refs/remotes/origin/master)
-Commit message: "Update Calculator.java"
-First time build. Skipping changelog.
  > git config remote.origin.url https://github.com/nosleep77/cd-docker-jenkins # timeout=10
  > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
  > git config core.sparsecheckout # timeout=10
  > git checkout -f 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 # timeout=10
+Commit message: "Update Calculator.java"
  > git branch -a -v --no-abbrev # timeout=10
  > git checkout -b master 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 # timeout=10
+ > git rev-list --no-walk 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 # timeout=10
 [Checks API] No suitable checks publisher found.
 [Pipeline] container
 [Pipeline] {
@@ -150,7 +150,7 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 > Task :check
 > Task :build
 
-BUILD SUCCESSFUL in 34s
+BUILD SUCCESSFUL in 41s
 7 actionable tasks: 7 executed
 + mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
 [Pipeline] }
@@ -181,4 +181,3 @@ BUILD SUCCESSFUL in 34s
 GitHub has been notified of this commit’s build result
 
 Finished: SUCCESS
-
