@@ -49,7 +49,7 @@ node(POD_LABEL) {
 
     container('gradle') {
 
-      stage('Build a gradle project') {
+      //stage('Build a gradle project') {
 
 	try {
         sh '''
@@ -84,7 +84,7 @@ node(POD_LABEL) {
 	}
 	
 
-      }
+      //}
 
      }
    }
@@ -92,7 +92,7 @@ node(POD_LABEL) {
 
   stage('Build Container Image') {
     container('kaniko') {
-      stage('Build a gradle project') {
+      //stage('Build a gradle project') {
 
 	if (buildPassed) {
 
@@ -118,7 +118,7 @@ node(POD_LABEL) {
 
         }
 
-       }
+       //}
      }
    }
 
