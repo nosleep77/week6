@@ -1,24 +1,24 @@
-Pull request #25 closed
+Pull request #36 closed
 Connecting to https://api.github.com using nosleep77/******
-Obtained wk7-jenkinsfile from 4ab9dd5f629278a728da8c9a8edd2b653a9d2daf
+Obtained wk7-jenkinsfile from 3ec9c1f0ac0ff0a17d2514d00a6a0d16bfc62c4e
 [Pipeline] Start of Pipeline
 [Pipeline] podTemplate
 [Pipeline] {
 [Pipeline] node
-Created Pod: kubernetes jenkins/multibranch1-master-11-06ckf-fc8gb-tk4vs
-Agent multibranch1-master-11-06ckf-fc8gb-tk4vs is provisioned from template multibranch1_master_11-06ckf-fc8gb
+Created Pod: kubernetes jenkins/multibranch1-master-16-7hwb0-jzk85-sw5rk
+Agent multibranch1-master-16-7hwb0-jzk85-sw5rk is provisioned from template multibranch1_master_16-7hwb0-jzk85
 ---
 apiVersion: "v1"
 kind: "Pod"
 metadata:
   annotations:
-    buildUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080/job/multibranch1/job/master/11/"
-    runUrl: "job/multibranch1/job/master/11/"
+    buildUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080/job/multibranch1/job/master/16/"
+    runUrl: "job/multibranch1/job/master/16/"
   labels:
     jenkins: "agent"
-    jenkins/label-digest: "c50f7310445b066e5fc39f2814cee38c4b5134a8"
-    jenkins/label: "multibranch1_master_11-06ckf"
-  name: "multibranch1-master-11-06ckf-fc8gb-tk4vs"
+    jenkins/label-digest: "5c7a469d0b9b9968bf3c54de6ecf8556dd7be394"
+    jenkins/label: "multibranch1_master_16-7hwb0"
+  name: "multibranch1-master-16-7hwb0-jzk85-sw5rk"
   namespace: "jenkins"
 spec:
   containers:
@@ -52,9 +52,9 @@ spec:
     - name: "JENKINS_SECRET"
       value: "********"
     - name: "JENKINS_AGENT_NAME"
-      value: "multibranch1-master-11-06ckf-fc8gb-tk4vs"
+      value: "multibranch1-master-16-7hwb0-jzk85-sw5rk"
     - name: "JENKINS_NAME"
-      value: "multibranch1-master-11-06ckf-fc8gb-tk4vs"
+      value: "multibranch1-master-16-7hwb0-jzk85-sw5rk"
     - name: "JENKINS_AGENT_WORKDIR"
       value: "/home/jenkins/agent"
     - name: "JENKINS_URL"
@@ -86,7 +86,7 @@ spec:
     persistentVolumeClaim:
       claimName: "week7-dind"
 
-Running on multibranch1-master-11-06ckf-fc8gb-tk4vs in /home/jenkins/agent/workspace/multibranch1_master
+Running on multibranch1-master-16-7hwb0-jzk85-sw5rk in /home/jenkins/agent/workspace/multibranch1_master
 [Pipeline] {
 [Pipeline] stage
 [Pipeline] { (Build a gradle project)
@@ -150,47 +150,9 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 > Task :check
 > Task :build
 
-BUILD SUCCESSFUL in 32s
+BUILD SUCCESSFUL in 34s
 7 actionable tasks: 7 executed
 + mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
-[Pipeline] sh
-+ cd Chapter08/sample1
-+ chmod +x gradlew
-+ ./gradlew test
-> Task :compileJava UP-TO-DATE
-> Task :processResources UP-TO-DATE
-> Task :classes UP-TO-DATE
-> Task :compileTestJava UP-TO-DATE
-> Task :processTestResources UP-TO-DATE
-> Task :testClasses UP-TO-DATE
-> Task :test UP-TO-DATE
-
-BUILD SUCCESSFUL in 1s
-5 actionable tasks: 5 up-to-date
-+ ./gradlew jacocoTestReport
-> Task :compileJava UP-TO-DATE
-> Task :processResources UP-TO-DATE
-> Task :classes UP-TO-DATE
-> Task :jacocoTestReport
-
-BUILD SUCCESSFUL in 1s
-3 actionable tasks: 1 executed, 2 up-to-date
-+ ./gradlew jacocoTestCoverageVerification
-> Task :compileJava UP-TO-DATE
-> Task :processResources UP-TO-DATE
-> Task :classes UP-TO-DATE
-> Task :jacocoTestCoverageVerification
-
-BUILD SUCCESSFUL in 1s
-3 actionable tasks: 1 executed, 2 up-to-date
-+ ./gradlew checkstyleMain
-> Task :compileJava UP-TO-DATE
-> Task :processResources UP-TO-DATE
-> Task :classes UP-TO-DATE
-> Task :checkstyleMain UP-TO-DATE
-
-BUILD SUCCESSFUL in 0s
-3 actionable tasks: 3 up-to-date
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] }
@@ -203,26 +165,6 @@ BUILD SUCCESSFUL in 0s
 [Pipeline] {
 [Pipeline] stage
 [Pipeline] { (Build a gradle project)
-[Pipeline] sh
-+ echo 'FROM openjdk:8-jre'
-+ echo 'COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar'
-+ echo 'ENTRYPOINT ["java", "-jar", "app.jar"]'
-+ mv /mnt/calculator-0.0.1-SNAPSHOT.jar .
-+ pwd
-+ /kaniko/executor --context /home/jenkins/agent/workspace/multibranch1_master --destination johnt035/calculator:1.0
-[36mINFO[0m[0000] Retrieving image manifest openjdk:8-jre      
-[36mINFO[0m[0000] Retrieving image openjdk:8-jre from registry index.docker.io 
-[36mINFO[0m[0001] Built cross stage deps: map[]                
-[36mINFO[0m[0001] Retrieving image manifest openjdk:8-jre      
-[36mINFO[0m[0001] Returning cached image manifest              
-[36mINFO[0m[0001] Executing 0 build triggers                   
-[36mINFO[0m[0001] Building stage 'openjdk:8-jre' [idx: '0', base-idx: '-1'] 
-[36mINFO[0m[0001] Unpacking rootfs as cmd COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar requires it. 
-[36mINFO[0m[0007] COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar 
-[36mINFO[0m[0007] Taking snapshot of files...                  
-[36mINFO[0m[0008] ENTRYPOINT ["java", "-jar", "app.jar"]       
-[36mINFO[0m[0008] Pushing image to johnt035/calculator:1.0     
-[36mINFO[0m[0010] Pushed index.docker.io/johnt035/calculator@sha256:00ebafe812f2d8394ac5e083a4945e670448e04e11fe208c697f9c1c35a82799 
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] }
@@ -239,4 +181,3 @@ BUILD SUCCESSFUL in 0s
 GitHub has been notified of this commit’s build result
 
 Finished: SUCCESS
-
