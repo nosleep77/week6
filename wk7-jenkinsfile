@@ -48,15 +48,18 @@ node(POD_LABEL) {
     git 'https://github.com/nosleep77/cd-docker-jenkins'
 
     container('gradle') {
+    stage('build gradle project') {
 
-	try {
         sh '''
         cd Chapter08/sample1
         chmod +x gradlew
         ./gradlew build
         mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
         '''
+    }
 
+    stage('run gradle tests') {
+	try {
 	if (env.CHANGE_BRANCH == "master") { 
         sh '''
         cd Chapter08/sample1
@@ -80,7 +83,7 @@ node(POD_LABEL) {
 	} catch (Exception e){
 	  buildPassed = false
 	}
-	
+      }	
 
      }
    }
