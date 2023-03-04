@@ -44,12 +44,10 @@ podTemplate(yaml: '''
 
 node(POD_LABEL) {
 
-  stage('Build a gradle project') {
+  stage('gradle build and tests') {
     git 'https://github.com/nosleep77/cd-docker-jenkins'
 
     container('gradle') {
-
-      //stage('Build a gradle project') {
 
 	try {
         sh '''
@@ -84,15 +82,12 @@ node(POD_LABEL) {
 	}
 	
 
-      //}
-
      }
    }
 
 
-  stage('Build Container Image') {
+  stage('build and push container image') {
     container('kaniko') {
-      //stage('Build a gradle project') {
 
 	if (buildPassed) {
 
@@ -118,7 +113,6 @@ node(POD_LABEL) {
 
         }
 
-       //}
      }
    }
 
