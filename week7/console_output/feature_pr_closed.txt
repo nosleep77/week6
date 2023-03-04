@@ -1,24 +1,24 @@
-Pull request #27 closed
+Pull request #35 closed
 Connecting to https://api.github.com using nosleep77/******
-Obtained wk7-jenkinsfile from fe6b5507b1abb866f432f2b03cd7fbb950944790
+Obtained wk7-jenkinsfile from afcb34d66d292db56aee09ad807d698d077c0253
 [Pipeline] Start of Pipeline
 [Pipeline] podTemplate
 [Pipeline] {
 [Pipeline] node
-Created Pod: kubernetes jenkins/multibranch1-feature-7-nhhf4-njltw-64zjx
-Agent multibranch1-feature-7-nhhf4-njltw-64zjx is provisioned from template multibranch1_feature_7-nhhf4-njltw
+Created Pod: kubernetes jenkins/multibranch1-feature-9-xkn3z-89zgf-25lqk
+Agent multibranch1-feature-9-xkn3z-89zgf-25lqk is provisioned from template multibranch1_feature_9-xkn3z-89zgf
 ---
 apiVersion: "v1"
 kind: "Pod"
 metadata:
   annotations:
-    buildUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080/job/multibranch1/job/feature/7/"
-    runUrl: "job/multibranch1/job/feature/7/"
+    buildUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080/job/multibranch1/job/feature/9/"
+    runUrl: "job/multibranch1/job/feature/9/"
   labels:
     jenkins: "agent"
-    jenkins/label-digest: "5040d39da0f1e35de74d61e88c4ad2981b867f3b"
-    jenkins/label: "multibranch1_feature_7-nhhf4"
-  name: "multibranch1-feature-7-nhhf4-njltw-64zjx"
+    jenkins/label-digest: "6448cee89d1201e00edc7846e47e305f62b11f20"
+    jenkins/label: "multibranch1_feature_9-xkn3z"
+  name: "multibranch1-feature-9-xkn3z-89zgf-25lqk"
   namespace: "jenkins"
 spec:
   containers:
@@ -52,9 +52,9 @@ spec:
     - name: "JENKINS_SECRET"
       value: "********"
     - name: "JENKINS_AGENT_NAME"
-      value: "multibranch1-feature-7-nhhf4-njltw-64zjx"
+      value: "multibranch1-feature-9-xkn3z-89zgf-25lqk"
     - name: "JENKINS_NAME"
-      value: "multibranch1-feature-7-nhhf4-njltw-64zjx"
+      value: "multibranch1-feature-9-xkn3z-89zgf-25lqk"
     - name: "JENKINS_AGENT_WORKDIR"
       value: "/home/jenkins/agent"
     - name: "JENKINS_URL"
@@ -86,7 +86,7 @@ spec:
     persistentVolumeClaim:
       claimName: "week7-dind"
 
-Running on multibranch1-feature-7-nhhf4-njltw-64zjx in /home/jenkins/agent/workspace/multibranch1_feature
+Running on multibranch1-feature-9-xkn3z-89zgf-25lqk in /home/jenkins/agent/workspace/multibranch1_feature
 [Pipeline] {
 [Pipeline] stage
 [Pipeline] { (Build a gradle project)
@@ -100,11 +100,11 @@ Fetching upstream changes from https://github.com/nosleep77/cd-docker-jenkins
  > git --version # timeout=10
  > git --version # 'git version 2.30.2'
  > git fetch --tags --force --progress -- https://github.com/nosleep77/cd-docker-jenkins +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/nosleep77/cd-docker-jenkins # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
 Avoid second fetch
 Checking out Revision 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 (refs/remotes/origin/master)
 Commit message: "Update Calculator.java"
- > git config remote.origin.url https://github.com/nosleep77/cd-docker-jenkins # timeout=10
- > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
  > git config core.sparsecheckout # timeout=10
  > git checkout -f 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 # timeout=10
@@ -150,31 +150,9 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 > Task :check
 > Task :build
 
-BUILD SUCCESSFUL in 33s
+BUILD SUCCESSFUL in 32s
 7 actionable tasks: 7 executed
 + mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
-[Pipeline] sh
-+ cd Chapter08/sample1
-+ chmod +x gradlew
-+ ./gradlew test
-> Task :compileJava UP-TO-DATE
-> Task :processResources UP-TO-DATE
-> Task :classes UP-TO-DATE
-> Task :compileTestJava UP-TO-DATE
-> Task :processTestResources UP-TO-DATE
-> Task :testClasses UP-TO-DATE
-> Task :test UP-TO-DATE
-
-BUILD SUCCESSFUL in 1s
-5 actionable tasks: 5 up-to-date
-+ ./gradlew checkstyleMain
-> Task :compileJava UP-TO-DATE
-> Task :processResources UP-TO-DATE
-> Task :classes UP-TO-DATE
-> Task :checkstyleMain UP-TO-DATE
-
-BUILD SUCCESSFUL in 1s
-3 actionable tasks: 3 up-to-date
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] }
@@ -187,26 +165,6 @@ BUILD SUCCESSFUL in 1s
 [Pipeline] {
 [Pipeline] stage
 [Pipeline] { (Build a gradle project)
-[Pipeline] sh
-+ echo 'FROM openjdk:8-jre'
-+ echo 'COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar'
-+ echo 'ENTRYPOINT ["java", "-jar", "app.jar"]'
-+ mv /mnt/calculator-0.0.1-SNAPSHOT.jar .
-+ pwd
-+ /kaniko/executor --context /home/jenkins/agent/workspace/multibranch1_feature --destination johnt035/calculator-feature:0.1
-[36mINFO[0m[0000] Retrieving image manifest openjdk:8-jre      
-[36mINFO[0m[0000] Retrieving image openjdk:8-jre from registry index.docker.io 
-[36mINFO[0m[0001] Built cross stage deps: map[]                
-[36mINFO[0m[0001] Retrieving image manifest openjdk:8-jre      
-[36mINFO[0m[0001] Returning cached image manifest              
-[36mINFO[0m[0001] Executing 0 build triggers                   
-[36mINFO[0m[0001] Building stage 'openjdk:8-jre' [idx: '0', base-idx: '-1'] 
-[36mINFO[0m[0001] Unpacking rootfs as cmd COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar requires it. 
-[36mINFO[0m[0007] COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar 
-[36mINFO[0m[0007] Taking snapshot of files...                  
-[36mINFO[0m[0007] ENTRYPOINT ["java", "-jar", "app.jar"]       
-[36mINFO[0m[0007] Pushing image to johnt035/calculator-feature:0.1 
-[36mINFO[0m[0011] Pushed index.docker.io/johnt035/calculator-feature@sha256:01bcc5182ad3b393b3c25b6d7854047736e4e5e29e98fb1eec05838add9a1845 
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] }
@@ -223,4 +181,3 @@ BUILD SUCCESSFUL in 1s
 GitHub has been notified of this commit’s build result
 
 Finished: SUCCESS
-
