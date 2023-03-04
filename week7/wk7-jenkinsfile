@@ -62,14 +62,24 @@ node(POD_LABEL) {
     }
 
 
-    if (env.BRANCH_NAME != "master") {
+    if (env.BRANCH_NAME == "feature" || env.BRANCH_NAME == "master") {
     stage('gradle unit tests') {
         sh '''
         cd Chapter08/sample1
         chmod +x gradlew
         ./gradlew test
         '''
-        } 
+        }
+    stage('static code analysis tests') {
+        sh '''
+        cd Chapter08/sample1
+        chmod +x gradlew
+        ./gradlew checkstyleMain
+        '''
+        }
+     }
+
+    if (env.BRANCH_NAME == "master") {
     stage('code coverage tests') {
         sh '''
         cd Chapter08/sample1
@@ -78,32 +88,8 @@ node(POD_LABEL) {
         ./gradlew jacocoTestReport
         '''
         } 
-    stage('static code analysis tests') {
-        sh '''
-        cd Chapter08/sample1
-        chmod +x gradlew
-        ./gradlew checkstyleMain
-        '''
-        }
      }
 
-
-    if (env.BRANCH_NAME != "feature") {
-    stage('gradle unit tests') {
-        sh '''
-        cd Chapter08/sample1
-        chmod +x gradlew
-        ./gradlew test
-        '''
-        }
-    stage('static code analysis tests') {
-        sh '''
-        cd Chapter08/sample1
-        chmod +x gradlew
-        ./gradlew checkstyleMain
-        '''
-        }
-     }
 
      } catch (Exception e){
         buildPassed = false
