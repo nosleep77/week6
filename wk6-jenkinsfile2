@@ -47,8 +47,8 @@ node(POD_LABEL) {
         '''
     }
 
+    if (env.BRANCH_NAME != "main") { 
     stage('gradle unit tests') {
-	if (env.BRANCH_NAME != "main") { 
         sh '''
         cd Chapter08/sample1
         chmod +x gradlew
@@ -56,8 +56,8 @@ node(POD_LABEL) {
         '''
         } }
 
+    if (env.BRANCH_NAME == "main") {
     stage('code coverage') {
-        if (env.BRANCH_NAME == "main") {
         sh '''
         cd Chapter08/sample1
         chmod +x gradlew
@@ -66,8 +66,8 @@ node(POD_LABEL) {
         '''
         } }
 
+    if (env.BRANCH_NAME != "main") {
     stage('static code analysis') {
-        if (env.BRANCH_NAME != "main") {
         sh '''
         cd Chapter08/sample1
         chmod +x gradlew
