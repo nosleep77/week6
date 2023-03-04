@@ -1,24 +1,24 @@
-Pull request #41 opened
+Pull request #53 opened
 Connecting to https://api.github.com using nosleep77/******
-Obtained wk7-jenkinsfile from c1e7f8abb7728ac60a50cbe1ede9c076ac8d7d21
+Obtained week7/wk7-jenkinsfile from 416277230bd05bf46d78c32b805c738e34ddd2dc
 [Pipeline] Start of Pipeline
 [Pipeline] podTemplate
 [Pipeline] {
 [Pipeline] node
-Created Pod: kubernetes jenkins/multibranch1-pr-41-1-hhl7p-h3gx0-cl0xl
-Agent multibranch1-pr-41-1-hhl7p-h3gx0-cl0xl is provisioned from template multibranch1_PR-41_1-hhl7p-h3gx0
+Created Pod: kubernetes jenkins/multibranch1-master-23-6t9h7-g0sc5-1nj5p
+Agent multibranch1-master-23-6t9h7-g0sc5-1nj5p is provisioned from template multibranch1_master_23-6t9h7-g0sc5
 ---
 apiVersion: "v1"
 kind: "Pod"
 metadata:
   annotations:
-    buildUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080/job/multibranch1/job/PR-41/1/"
-    runUrl: "job/multibranch1/job/PR-41/1/"
+    buildUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080/job/multibranch1/job/master/23/"
+    runUrl: "job/multibranch1/job/master/23/"
   labels:
     jenkins: "agent"
-    jenkins/label-digest: "f00545f00c337a1f883748f55015c7ce5962456d"
-    jenkins/label: "multibranch1_PR-41_1-hhl7p"
-  name: "multibranch1-pr-41-1-hhl7p-h3gx0-cl0xl"
+    jenkins/label-digest: "cded03170deffa82f2e5ba8a610656ee9bb6a34f"
+    jenkins/label: "multibranch1_master_23-6t9h7"
+  name: "multibranch1-master-23-6t9h7-g0sc5-1nj5p"
   namespace: "jenkins"
 spec:
   containers:
@@ -52,9 +52,9 @@ spec:
     - name: "JENKINS_SECRET"
       value: "********"
     - name: "JENKINS_AGENT_NAME"
-      value: "multibranch1-pr-41-1-hhl7p-h3gx0-cl0xl"
+      value: "multibranch1-master-23-6t9h7-g0sc5-1nj5p"
     - name: "JENKINS_NAME"
-      value: "multibranch1-pr-41-1-hhl7p-h3gx0-cl0xl"
+      value: "multibranch1-master-23-6t9h7-g0sc5-1nj5p"
     - name: "JENKINS_AGENT_WORKDIR"
       value: "/home/jenkins/agent"
     - name: "JENKINS_URL"
@@ -86,7 +86,7 @@ spec:
     persistentVolumeClaim:
       claimName: "week7-dind"
 
-Running on multibranch1-pr-41-1-hhl7p-h3gx0-cl0xl in /home/jenkins/agent/workspace/multibranch1_PR-41
+Running on multibranch1-master-23-6t9h7-g0sc5-1nj5p in /home/jenkins/agent/workspace/multibranch1_master
 [Pipeline] {
 [Pipeline] stage
 [Pipeline] { (gradle build and tests)
@@ -94,14 +94,14 @@ Running on multibranch1-pr-41-1-hhl7p-h3gx0-cl0xl in /home/jenkins/agent/workspa
 The recommended git tool is: NONE
 No credentials specified
 Cloning the remote Git repository
-Avoid second fetch
-Checking out Revision 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 (refs/remotes/origin/master)
 Cloning repository https://github.com/nosleep77/cd-docker-jenkins
- > git init /home/jenkins/agent/workspace/multibranch1_PR-41 # timeout=10
+ > git init /home/jenkins/agent/workspace/multibranch1_master # timeout=10
 Fetching upstream changes from https://github.com/nosleep77/cd-docker-jenkins
  > git --version # timeout=10
  > git --version # 'git version 2.30.2'
  > git fetch --tags --force --progress -- https://github.com/nosleep77/cd-docker-jenkins +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+Checking out Revision 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 (refs/remotes/origin/master)
  > git config remote.origin.url https://github.com/nosleep77/cd-docker-jenkins # timeout=10
  > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
@@ -110,7 +110,7 @@ Fetching upstream changes from https://github.com/nosleep77/cd-docker-jenkins
  > git branch -a -v --no-abbrev # timeout=10
  > git checkout -b master 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 # timeout=10
 Commit message: "Update Calculator.java"
-First time build. Skipping changelog.
+ > git rev-list --no-walk 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 # timeout=10
 [Checks API] No suitable checks publisher found.
 [Pipeline] container
 [Pipeline] {
@@ -150,13 +150,13 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 > Task :check
 > Task :build
 
-BUILD SUCCESSFUL in 48s
+BUILD SUCCESSFUL in 45s
 7 actionable tasks: 7 executed
 + mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
-[Pipeline] { (run gradle tests)
+[Pipeline] { (gradle unit tests)
 [Pipeline] sh
 + cd Chapter08/sample1
 + chmod +x gradlew
@@ -171,22 +171,13 @@ BUILD SUCCESSFUL in 48s
 
 BUILD SUCCESSFUL in 1s
 5 actionable tasks: 5 up-to-date
-+ ./gradlew jacocoTestReport
-> Task :compileJava UP-TO-DATE
-> Task :processResources UP-TO-DATE
-> Task :classes UP-TO-DATE
-> Task :jacocoTestReport
-
-BUILD SUCCESSFUL in 2s
-3 actionable tasks: 1 executed, 2 up-to-date
-+ ./gradlew jacocoTestCoverageVerification
-> Task :compileJava UP-TO-DATE
-> Task :processResources UP-TO-DATE
-> Task :classes UP-TO-DATE
-> Task :jacocoTestCoverageVerification
-
-BUILD SUCCESSFUL in 1s
-3 actionable tasks: 1 executed, 2 up-to-date
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (static code analysis tests)
+[Pipeline] sh
++ cd Chapter08/sample1
++ chmod +x gradlew
 + ./gradlew checkstyleMain
 > Task :compileJava UP-TO-DATE
 > Task :processResources UP-TO-DATE
@@ -195,6 +186,29 @@ BUILD SUCCESSFUL in 1s
 
 BUILD SUCCESSFUL in 1s
 3 actionable tasks: 3 up-to-date
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (code coverage tests)
+[Pipeline] sh
++ cd Chapter08/sample1
++ chmod +x gradlew
++ ./gradlew jacocoTestCoverageVerification
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jacocoTestCoverageVerification
+
+BUILD SUCCESSFUL in 1s
+3 actionable tasks: 1 executed, 2 up-to-date
++ ./gradlew jacocoTestReport
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jacocoTestReport
+
+BUILD SUCCESSFUL in 1s
+3 actionable tasks: 1 executed, 2 up-to-date
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] }
@@ -211,7 +225,7 @@ BUILD SUCCESSFUL in 1s
 + echo 'ENTRYPOINT ["java", "-jar", "app.jar"]'
 + mv /mnt/calculator-0.0.1-SNAPSHOT.jar .
 + pwd
-+ /kaniko/executor --context /home/jenkins/agent/workspace/multibranch1_PR-41 --destination johnt035/calculator:1.0
++ /kaniko/executor --context /home/jenkins/agent/workspace/multibranch1_master --destination johnt035/calculator:1.0
 [36mINFO[0m[0000] Retrieving image manifest openjdk:8-jre      
 [36mINFO[0m[0000] Retrieving image openjdk:8-jre from registry index.docker.io 
 [36mINFO[0m[0001] Built cross stage deps: map[]                
@@ -222,9 +236,9 @@ BUILD SUCCESSFUL in 1s
 [36mINFO[0m[0001] Unpacking rootfs as cmd COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar requires it. 
 [36mINFO[0m[0007] COPY ./calculator-0.0.1-SNAPSHOT.jar app.jar 
 [36mINFO[0m[0007] Taking snapshot of files...                  
-[36mINFO[0m[0007] ENTRYPOINT ["java", "-jar", "app.jar"]       
-[36mINFO[0m[0007] Pushing image to johnt035/calculator:1.0     
-[36mINFO[0m[0010] Pushed index.docker.io/johnt035/calculator@sha256:a35eacd02523b84dcc52b3c870728831e964c18bc9aa389d37d9d4527729bc55 
+[36mINFO[0m[0008] ENTRYPOINT ["java", "-jar", "app.jar"]       
+[36mINFO[0m[0008] Pushing image to johnt035/calculator:1.0     
+[36mINFO[0m[0011] Pushed index.docker.io/johnt035/calculator@sha256:efe7d1937716d54d6878590d88b41ba32817cc20419b99ea14ac1fb3a696dc89 
 [Pipeline] }
 [Pipeline] // container
 [Pipeline] }
