@@ -1,0 +1,81 @@
+
+def buildPassed = true
+
+podTemplate(yaml: '''
+    apiVersion: v1
+    kind: Pod
+    spec:
+      containers:
+      - name: gradle
+        image: gradle:6.3-jdk14
+        command:
+        - sleep
+        args:
+        - 99d
+        volumeMounts:
+        - name: shared-storage
+          mountPath: /mnt
+
+      restartPolicy: Never
+      volumes:
+      - name: shared-storage
+        persistentVolumeClaim:
+          claimName: week7-dind
+      - name: kaniko-secret
+        secret:
+            secretName: dockercred
+            items:
+            - key: .dockerconfigjson
+              path: config.json
+''') {
+
+
+node(POD_LABEL) {
+
+  stage('gradle build and tests') {
+    git 'https://github.com/nosleep77/cd-docker-jenkins'
+
+    container('gradle') {
+
+    stage('build gradle project') {
+
+        sh '''
+        cd Chapter08/sample1
+        chmod +x gradlew
+        ./gradlew build
+        mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
+        '''
+    }
+
+    if (env.BRANCH_NAME != "main") { 
+    stage('gradle unit tests') {
+        sh '''
+        cd Chapter08/sample1
+        chmod +x gradlew
+	./gradlew test
+        '''
+        } }
+
+    if (env.BRANCH_NAME == "main") {
+    stage('code coverage') {
+        sh '''
+        cd Chapter08/sample1
+        chmod +x gradlew
+        ./gradlew jacocoTestReport
+        ./gradlew jacocoTestCoverageVerification
+        '''
+        } }
+
+    if (env.BRANCH_NAME != "main") {
+    stage('static code analysis') {
+        sh '''
+        cd Chapter08/sample1
+        chmod +x gradlew
+        ./gradlew checkstyleMain
+        '''
+        } }
+
+      }	
+     }
+   }
+ }
