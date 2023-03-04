@@ -1,24 +1,24 @@
-Pull request #29 closed
+Pull request #34 closed
 Connecting to https://api.github.com using nosleep77/******
-Obtained wk7-jenkinsfile from 6def64a8ee6257af9cfd18985101ee9b3106cb0b
+Obtained wk7-jenkinsfile from 42bc594b7aa84bc4c018f34aa7a8d0a4c8799b60
 [Pipeline] Start of Pipeline
 [Pipeline] podTemplate
 [Pipeline] {
 [Pipeline] node
-Created Pod: kubernetes jenkins/multibranch1-playground-4-vk62l-m6j3t-pcx53
-Agent multibranch1-playground-4-vk62l-m6j3t-pcx53 is provisioned from template multibranch1_playground_4-vk62l-m6j3t
+Created Pod: kubernetes jenkins/multibranch1-playground-6-k9cth-64672-5rtsw
+Agent multibranch1-playground-6-k9cth-64672-5rtsw is provisioned from template multibranch1_playground_6-k9cth-64672
 ---
 apiVersion: "v1"
 kind: "Pod"
 metadata:
   annotations:
-    buildUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080/job/multibranch1/job/playground/4/"
-    runUrl: "job/multibranch1/job/playground/4/"
+    buildUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080/job/multibranch1/job/playground/6/"
+    runUrl: "job/multibranch1/job/playground/6/"
   labels:
     jenkins: "agent"
-    jenkins/label-digest: "79e7b18480e794a4e4760cd17f4163cdcaeb6a9a"
-    jenkins/label: "multibranch1_playground_4-vk62l"
-  name: "multibranch1-playground-4-vk62l-m6j3t-pcx53"
+    jenkins/label-digest: "45c94babd32f7f50655ee38113eb002944eb0c84"
+    jenkins/label: "multibranch1_playground_6-k9cth"
+  name: "multibranch1-playground-6-k9cth-64672-5rtsw"
   namespace: "jenkins"
 spec:
   containers:
@@ -52,9 +52,9 @@ spec:
     - name: "JENKINS_SECRET"
       value: "********"
     - name: "JENKINS_AGENT_NAME"
-      value: "multibranch1-playground-4-vk62l-m6j3t-pcx53"
+      value: "multibranch1-playground-6-k9cth-64672-5rtsw"
     - name: "JENKINS_NAME"
-      value: "multibranch1-playground-4-vk62l-m6j3t-pcx53"
+      value: "multibranch1-playground-6-k9cth-64672-5rtsw"
     - name: "JENKINS_AGENT_WORKDIR"
       value: "/home/jenkins/agent"
     - name: "JENKINS_URL"
@@ -86,7 +86,7 @@ spec:
     persistentVolumeClaim:
       claimName: "week7-dind"
 
-Running on multibranch1-playground-4-vk62l-m6j3t-pcx53 in /home/jenkins/agent/workspace/multibranch1_playground
+Running on multibranch1-playground-6-k9cth-64672-5rtsw in /home/jenkins/agent/workspace/multibranch1_playground
 [Pipeline] {
 [Pipeline] stage
 [Pipeline] { (Build a gradle project)
@@ -150,7 +150,7 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 > Task :check
 > Task :build
 
-BUILD SUCCESSFUL in 32s
+BUILD SUCCESSFUL in 33s
 7 actionable tasks: 7 executed
 + mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
 [Pipeline] }
@@ -181,4 +181,3 @@ BUILD SUCCESSFUL in 32s
 GitHub has been notified of this commit’s build result
 
 Finished: SUCCESS
-
