@@ -99,7 +99,7 @@ node(POD_LABEL) {
    }
 
 
-  if (buildPassed) {
+  if (buildPassed && env.BRANCH_NAME != "playground")  {
   stage('build and push container image') {
     container('kaniko') {
 
