@@ -1,24 +1,24 @@
-Pull request #43 opened
+Pull request #55 opened
 Connecting to https://api.github.com using nosleep77/******
-Obtained wk7-jenkinsfile from 0c438e263126bc85776134a4b522355db32ca246
+Obtained week7/wk7-jenkinsfile from ae04cb0d116d71c6051924501c74ff27b7bebe59
 [Pipeline] Start of Pipeline
 [Pipeline] podTemplate
 [Pipeline] {
 [Pipeline] node
-Created Pod: kubernetes jenkins/multibranch1-pr-43-1-lsmz4-t2n8b-jzzpq
-Agent multibranch1-pr-43-1-lsmz4-t2n8b-jzzpq is provisioned from template multibranch1_PR-43_1-lsmz4-t2n8b
+Created Pod: kubernetes jenkins/multibranch1-playground-10-6p9mh-z44c1-n74pj
+Agent multibranch1-playground-10-6p9mh-z44c1-n74pj is provisioned from template multibranch1_playground_10-6p9mh-z44c1
 ---
 apiVersion: "v1"
 kind: "Pod"
 metadata:
   annotations:
-    buildUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080/job/multibranch1/job/PR-43/1/"
-    runUrl: "job/multibranch1/job/PR-43/1/"
+    buildUrl: "http://jenkins-service.jenkins.svc.cluster.local:8080/job/multibranch1/job/playground/10/"
+    runUrl: "job/multibranch1/job/playground/10/"
   labels:
     jenkins: "agent"
-    jenkins/label-digest: "2c7966810f33e4cf230f7140628de5919c7d82b7"
-    jenkins/label: "multibranch1_PR-43_1-lsmz4"
-  name: "multibranch1-pr-43-1-lsmz4-t2n8b-jzzpq"
+    jenkins/label-digest: "3175bf2f85e2aa73f10937b5c6c62c6fa872eb33"
+    jenkins/label: "multibranch1_playground_10-6p9mh"
+  name: "multibranch1-playground-10-6p9mh-z44c1-n74pj"
   namespace: "jenkins"
 spec:
   containers:
@@ -52,9 +52,9 @@ spec:
     - name: "JENKINS_SECRET"
       value: "********"
     - name: "JENKINS_AGENT_NAME"
-      value: "multibranch1-pr-43-1-lsmz4-t2n8b-jzzpq"
+      value: "multibranch1-playground-10-6p9mh-z44c1-n74pj"
     - name: "JENKINS_NAME"
-      value: "multibranch1-pr-43-1-lsmz4-t2n8b-jzzpq"
+      value: "multibranch1-playground-10-6p9mh-z44c1-n74pj"
     - name: "JENKINS_AGENT_WORKDIR"
       value: "/home/jenkins/agent"
     - name: "JENKINS_URL"
@@ -86,7 +86,7 @@ spec:
     persistentVolumeClaim:
       claimName: "week7-dind"
 
-Running on multibranch1-pr-43-1-lsmz4-t2n8b-jzzpq in /home/jenkins/agent/workspace/multibranch1_PR-43
+Running on multibranch1-playground-10-6p9mh-z44c1-n74pj in /home/jenkins/agent/workspace/multibranch1_playground
 [Pipeline] {
 [Pipeline] stage
 [Pipeline] { (gradle build and tests)
@@ -95,7 +95,7 @@ The recommended git tool is: NONE
 No credentials specified
 Cloning the remote Git repository
 Cloning repository https://github.com/nosleep77/cd-docker-jenkins
- > git init /home/jenkins/agent/workspace/multibranch1_PR-43 # timeout=10
+ > git init /home/jenkins/agent/workspace/multibranch1_playground # timeout=10
 Fetching upstream changes from https://github.com/nosleep77/cd-docker-jenkins
  > git --version # timeout=10
  > git --version # 'git version 2.30.2'
@@ -103,7 +103,6 @@ Fetching upstream changes from https://github.com/nosleep77/cd-docker-jenkins
 Avoid second fetch
 Checking out Revision 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 (refs/remotes/origin/master)
 Commit message: "Update Calculator.java"
-First time build. Skipping changelog.
  > git config remote.origin.url https://github.com/nosleep77/cd-docker-jenkins # timeout=10
  > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
@@ -111,6 +110,7 @@ First time build. Skipping changelog.
  > git checkout -f 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 # timeout=10
  > git branch -a -v --no-abbrev # timeout=10
  > git checkout -b master 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 # timeout=10
+ > git rev-list --no-walk 5b2e545affc7ab4cadb551b731f7ca68f8ee0e33 # timeout=10
 [Checks API] No suitable checks publisher found.
 [Pipeline] container
 [Pipeline] {
@@ -150,23 +150,11 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 > Task :check
 > Task :build
 
-BUILD SUCCESSFUL in 44s
+BUILD SUCCESSFUL in 40s
 7 actionable tasks: 7 executed
 + mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
 [Pipeline] }
 [Pipeline] // stage
-[Pipeline] stage
-[Pipeline] { (run gradle tests)
-[Pipeline] }
-[Pipeline] // stage
-[Pipeline] }
-[Pipeline] // container
-[Pipeline] }
-[Pipeline] // stage
-[Pipeline] stage
-[Pipeline] { (build and push container image)
-[Pipeline] container
-[Pipeline] {
 [Pipeline] }
 [Pipeline] // container
 [Pipeline] }
